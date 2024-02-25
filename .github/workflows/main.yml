@@ -1,0 +1,21 @@
+name: Upload to Pinata
+
+on:
+  push:
+    branches:
+      - main  # Adjust this according to your branch name
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Upload to Pinata
+        uses: nftstorage/pinata-github-action@v1
+        with:
+          apiKey: ${{ secrets.PINATA_API_KEY }}
+          apiSecret: ${{ secrets.PINATA_API_SECRET }}
+          source: index.html
